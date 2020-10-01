@@ -1,10 +1,10 @@
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string]; //this is a Tuple!
-// } = {
-const person = {
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string]; //this is a Tuple!
+} = {
+  // const person = {
   name: "Diego",
   age: 28,
   hobbies: ["Programming", "Problem Solving"],
@@ -12,7 +12,7 @@ const person = {
 };
 
 person.role.push("admin"); // we can push this , TS doesn't know we just want 2 elements.
-person.role[1] = 10; // TS also doesn't know we want the 2nd one to be a string.
+// person.role[1] = 10; // TS also doesn't know we want the 2nd one to be a string.
 
 let favoriteActivities: string[]; //an array of strings
 
