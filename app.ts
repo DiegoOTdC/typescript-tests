@@ -37,8 +37,11 @@ const person = {
 
 //person.role = [0, "admin", "user"] // this is not allowed with Tuple.
 
-let favoriteActivities: string[]; //an array of strings
+// let favoriteActivities: string[]; //an array of strings
+// favoriteActivities = ["Sports"];
 
+//Any type // works, but try to avoid. You want to assign types to values.
+let favoriteActivities: any[]; //an array of strings
 favoriteActivities = ["Sports"];
 
 console.log(person.name);
