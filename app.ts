@@ -1,9 +1,13 @@
+//Type alias
+type Combinable = number | string;
+type ConversionDescriptor = "as-number" | "as-text";
+
 //Union type / output numbers and strings (or any kind of types really)
 
 function combine(
-  input1: number | string,
-  input2: number | string,
-  resultConversion: "as-number" | "as-text" // only a few values, use a union type with your literal type. <- do this for extra type safety!
+  input1: Combinable,
+  input2: Combinable,
+  resultConversion: ConversionDescriptor // only a few values, use a union type with your literal type. <- do this for extra type safety!
 ) {
   let result;
   // run time type check -> depending on the logic, you do not always need to do this.
