@@ -30,6 +30,17 @@ console.log(printResult(add(5, 12)));
 let someValue: undefined;
 
 //Function Types
-let combineValues: Function;
+let combineValues: (a: number, b: number) => number; // combineValues takes a function with 2 numbers as params and returns 1 number.
+//combineValues = printResult;   <- is not possible anymore.
 combineValues = add;
 console.log(combineValues(8, 8));
+
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
+  // by specifying void, we ignore any result, we do nothing with return. cb takes a number and returns nothing.
+  const result = n1 + n2;
+  cb(result);
+}
+
+addAndHandle(10, 20, (result) => {
+  console.log(result);
+});
