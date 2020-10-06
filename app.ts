@@ -15,7 +15,7 @@ function printResult(num: number) {
   console.log("Result: " + num);
 }
 
-//Technical difference: You can use undefined if you return nothing in the function.
+//Technical difference: You can use undefined if you return nothing in the function. Most of the time you will use void, instead of undefined. You can also use void in this case. use VOID!
 function printResult2(num: number): undefined {
   console.log("Result: " + num);
   return;
