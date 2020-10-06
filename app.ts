@@ -1,32 +1,30 @@
-// Type Aliases & Object Types
-type User = { name: string; age: number };
-const u1: User = { name: "Max", age: 30 };
-console.log(u1);
+//function return Types & "Void"
 
-//YOU CAN SIMPLIFY THIS CODE:
-// function greet(user: { name: string; age: number }) {
-//   console.log("Hi, I am" + user.name);
-// }
-
-// function isOlder(user: { name: string; age: number }, checkAge: number) {
-//   return console.log(checkAge > user.age);
-// }
-
-// INTO THIS:
-type User2 = { name: string; age: number };
-
-function greet(user: User2) {
-  console.log("Hi, I am " + user.name);
+//return a number
+function add(n1: number, n2: number): number {
+  return n1 + n2;
 }
 
-function isOlder(user: User2, checkAge: number) {
-  return console.log(checkAge > user.age);
+// //wanting return string, gives error (don't need to specify like I did here)
+// function add2(n1: number, n2: number): string {
+//     return n1 + n2;
+//   }
+
+// void type - don't need to specify like you did above. A function can't be undefined (even though it may be), therefor we use void.
+function printResult(num: number) {
+  console.log("Result: " + num);
 }
 
-///////////////////
+//Technical difference: You can use undefined if you return nothing in the function.
+function printResult2(num: number): undefined {
+  console.log("Result: " + num);
+  return;
+}
 
-const person1 = { name: "Diégo", age: 28 };
-const age = 40;
+printResult(add(5, 12));
 
-greet(person1);
-isOlder(person1, age);
+//use return value of a function that does return anything, we get -undefined-
+console.log(printResult(add(5, 12)));
+
+//undefined is an actualy type ~however useful it may be
+let someValue: undefined;
