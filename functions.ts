@@ -11,9 +11,9 @@ function add(n1: number, n2: number): number {
 //   }
 
 // void type - don't need to specify like you did above. A function can't be undefined (even though it may be), therefor we use void.
-function printResult(num: number) {
-  console.log("Result: " + num);
-}
+// function printResult(num: number) {
+//   console.log("Result: " + num);
+// }
 
 //Technical difference: You can use undefined if you return nothing in the function. Most of the time you will use void, instead of undefined. You can also use void in this case. use VOID!
 function printResult2(num: number): undefined {
@@ -21,10 +21,10 @@ function printResult2(num: number): undefined {
   return;
 }
 
-printResult(add(5, 12));
+// printResult(add(5, 12));
 
-//use return value of a function that does return anything, we get -undefined-
-console.log(printResult(add(5, 12)));
+// //use return value of a function that does return anything, we get -undefined-
+// console.log(printResult(add(5, 12)));
 
 //undefined is an actualy type ~however useful it may be
 let someValue: undefined;
