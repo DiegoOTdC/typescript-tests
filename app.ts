@@ -28,3 +28,8 @@ console.log(printResult(add(5, 12)));
 
 //undefined is an actualy type ~however useful it may be
 let someValue: undefined;
+
+//Function Types
+let combineValues: Function;
+combineValues = add;
+console.log(combineValues(8, 8));
