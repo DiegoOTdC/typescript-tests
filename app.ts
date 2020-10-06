@@ -3,7 +3,7 @@
 function combine(
   input1: number | string,
   input2: number | string,
-  resultConversion: string
+  resultConversion: "as-number" | "as-text" // only a few values, use a union type with your literal type. <- do this for extra type safety!
 ) {
   let result;
   // run time type check -> depending on the logic, you do not always need to do this.
