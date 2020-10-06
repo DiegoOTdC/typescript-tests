@@ -12,3 +12,10 @@ userInput = "Max";
 if (typeof userInput === "string") {
   userName = userInput;
 }
+
+//The Never Type -> does not return nothing, it returns never! Explicitely assign the never type.
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code }; // we can throw any object or any value as an error.
+  //   while(true){}
+}
+generateError("An error occurred!", 500);
