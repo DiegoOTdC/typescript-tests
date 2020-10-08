@@ -5,7 +5,7 @@ const activeHobbies = ["Hiking", ...hobbies];
 activeHobbies.push(...hobbies);
 
 const person = {
-  name: "Diego",
+  firstName: "Diego",
   age: 28,
 };
 
@@ -22,3 +22,11 @@ const add = (...numbers: number[]) => {
 const addedNumbers = add(5, 10, 2, 3.6);
 
 console.log(addedNumbers);
+
+//array and object destructuring
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+
+//rename property
+const { firstName: userName, age } = person;
+
+console.log(userName, age);
