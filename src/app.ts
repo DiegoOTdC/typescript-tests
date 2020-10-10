@@ -1,17 +1,20 @@
 //classes start with upper case
 class Department {
-  name: string;
-  //Private property/field = a property that is only accessible from inside the class.
+  //   private id: string;
+  //   private name: string;
+  //Private(modifier) property/field = a property that is only accessible from inside the class.  //"Public" is the default.
   private employees: string[] = [];
 
   //method is called on creation, takes a string in this case that we assign to name property.
-  constructor(n: string) {
-    this.name = n;
+  constructor(private id: string, public name: string) {
+    //write private and public in front of these properties, for cleaner code.
+    // this.id = id;
+    // this.name = n;
   }
 
   //method + this keyword, adding type 'Department' to 'this', creates extra safety.
   describe(this: Department) {
-    console.log("Department: " + this.name);
+    console.log(`Department (${this.id}): ${this.name}`);
   }
 
   addEmployee(employee: string) {
@@ -25,14 +28,12 @@ class Department {
 }
 
 //create the Department object, passing it a string. store in const
-const accounting = new Department("Diego");
-
-console.log(accounting);
+const accounting = new Department("d1", "Accounting");
 
 accounting.addEmployee("George");
 accounting.addEmployee("Jose");
 
-// accounting.employees[2] = "Anna"; //alternative way, like this, should not be supported.
+// accounting.employees[2] = "Anna"; //alternative way, like this, should not be supported -> create private properties.
 
 accounting.describe();
 accounting.printEmployeeInformation();
