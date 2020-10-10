@@ -1,5 +1,6 @@
 class Department {
-  private employees: string[] = [];
+  //protected is like private, but also available in classes that extend this class. (inherited)
+  protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {}
 
@@ -32,6 +33,14 @@ class AccountingDepartment extends Department {
     super(id, "Accounting");
   }
 
+  //overriding methods of base class, add own implementation.
+  addEmployee(name: string) {
+    if (name === "Diego") {
+      return;
+    }
+    this.employees.push(name);
+  }
+
   addReport(text: string) {
     this.reports.push(text);
   }
@@ -54,6 +63,9 @@ console.log(it);
 const accounting = new AccountingDepartment("d2", []);
 
 accounting.addReport("something went wrong...");
-accounting.printReports();
 
-console.log(accounting);
+accounting.addEmployee("Diego");
+accounting.addEmployee("Orlando");
+
+accounting.printReports();
+accounting.printEmployeeInformation();
