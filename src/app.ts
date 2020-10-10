@@ -1,19 +1,8 @@
-//classes start with upper case
 class Department {
-  //   private readonly id: string;
-  //   private name: string;
-  //Private(modifier) property/field = a property that is only accessible from inside the class.  //"Public" is the default.
   private employees: string[] = [];
 
-  //method is called on creation, takes a string in this case that we assign to name property.
-  //readonly = property only initialized once, can't change afterwards.
-  constructor(private readonly id: string, public name: string) {
-    //write private and public in front of these properties, for cleaner code.
-    // this.id = id;
-    // this.name = n;
-  }
+  constructor(private readonly id: string, public name: string) {}
 
-  //method + this keyword, adding type 'Department' to 'this', creates extra safety.
   describe(this: Department) {
     console.log(`Department (${this.id}): ${this.name}`);
   }
@@ -28,18 +17,43 @@ class Department {
   }
 }
 
-//create the Department object, passing it a string. store in const
-const accounting = new Department("d1", "Accounting");
+//class inherents from other class. As long as we don't add a constructor here, it uses the Department's constructor.
+class ITDepartment extends Department {
+  //admins: string[];
+  constructor(id: string, public admins: string[]) {
+    //add suoer in inherting class (before anything else, like "this"), execute as function. Super class constructor of base class (department's constructor)
+    super(id, "IT");
+    //this.admins = admins
+  }
+}
 
-accounting.addEmployee("George");
-accounting.addEmployee("Jose");
+class AccountingDepartment extends Department {
+  constructor(id: string, public reports: string[]) {
+    super(id, "Accounting");
+  }
 
-// accounting.employees[2] = "Anna"; //alternative way, like this, should not be supported -> create private properties.
+  addReport(text: string) {
+    this.reports.push(text);
+  }
 
-accounting.describe();
-accounting.printEmployeeInformation();
+  printReports() {
+    console.log(this.reports);
+  }
+}
 
-//'this' refers to the thing that is responsible for calling the method. accountingCopy in this case, which has no name property. Thus result, Department: undefined.
-//Add a name property, to have success here.
-// const accountingCopy = { name: "Orlando", describe: accounting.describe };
-// accountingCopy.describe();
+const it = new ITDepartment("d1", ["Diego"]);
+
+it.addEmployee("George");
+it.addEmployee("Jose");
+
+it.describe();
+it.printEmployeeInformation();
+
+console.log(it);
+
+const accounting = new AccountingDepartment("d2", []);
+
+accounting.addReport("something went wrong...");
+accounting.printReports();
+
+console.log(accounting);
