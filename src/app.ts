@@ -1,12 +1,13 @@
 //classes start with upper case
 class Department {
-  //   private id: string;
+  //   private readonly id: string;
   //   private name: string;
   //Private(modifier) property/field = a property that is only accessible from inside the class.  //"Public" is the default.
   private employees: string[] = [];
 
   //method is called on creation, takes a string in this case that we assign to name property.
-  constructor(private id: string, public name: string) {
+  //readonly = property only initialized once, can't change afterwards.
+  constructor(private readonly id: string, public name: string) {
     //write private and public in front of these properties, for cleaner code.
     // this.id = id;
     // this.name = n;
