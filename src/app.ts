@@ -1,8 +1,16 @@
 class Department {
+  //static property
+  static fiscalYear = 2020;
+
   //protected is like private, but also available in classes that extend this class. (inherited)
   protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {}
+
+  //create static method
+  static createEmployee(name: string) {
+    return { name: name };
+  }
 
   describe(this: Department) {
     console.log(`Department (${this.id}): ${this.name}`);
@@ -70,6 +78,10 @@ class AccountingDepartment extends Department {
     console.log(this.reports);
   }
 }
+
+//don't need to add new in front of deparment now, call directly on the class, we use the class as a grouping mechanism.
+const employee1 = Department.createEmployee("Diego");
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment("d1", ["Diego"]);
 
