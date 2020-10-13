@@ -43,6 +43,8 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  //static property accessible from inside the class, value will be of the class type itself.
+  private static instance: AccountingDepartment;
 
   //getter = property where you execute a function when you retrieve a value, that allows dev to add more complex logic.
   get mostRecentReport() {
@@ -61,9 +63,20 @@ class AccountingDepartment extends Department {
     this.addReport(value);
   }
 
-  constructor(id: string, public reports: string[]) {
+  //add private to constructor, so we'll only be able to create one instance of this class. (so 1 AccountingDepartment)
+  private constructor(id: string, public reports: string[]) {
     super(id, "Accounting");
     this.lastReport = reports[0];
+  }
+
+  //Since constructor is private, we need static methods to be able to get inside this class.
+  static getInstance() {
+    //Return existing instance or create new one.
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment("d2", []);
+    return this.instance;
   }
 
   describe() {
@@ -102,7 +115,13 @@ it.printEmployeeInformation();
 
 console.log(it);
 
-const accounting = new AccountingDepartment("d2", []);
+//You need to call the AccountingDepartment differntly now.
+// const accounting = new AccountingDepartment("d2", []);
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
+
+//they are both equal, the same object/instance. Since we only have one instance with the singleton pattern.
+console.log(accounting, accounting2);
 
 //setting a value to this, wil active the setter method.
 accounting.mostRecentReport = "Year End Report";
