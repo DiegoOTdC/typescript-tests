@@ -1,6 +1,7 @@
 //Create interface, always an object, set the types of properties and methods.
 interface Greetable {
-  name: string;
+  //can set name once, is readonly after that.
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -19,7 +20,7 @@ class Person implements Greetable {
   }
 }
 
-//create a variable, set type to (interface) Person.
+//create a variable, set type to (interface) Person / interface.
 let user1: Greetable;
 
 //assign object to variable, where you assign strings and numbers etc to the properties and methods inside of the object.
