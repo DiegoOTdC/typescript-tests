@@ -118,3 +118,20 @@ function moveAnimal(animal: Animal) {
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
 moveAnimal({ type: "horse", runningSpeed: 60 });
+
+//type casting: 1st way.
+// const userInputElement = <HTMLInputElement>(
+//   document.getElementById("user-input")!
+// );
+
+//type casting: 2nd way. (works with React, because of JSX syntax)
+// const userInputElement = document.getElementById(
+//   "user-input"
+// )! as HTMLInputElement;
+
+//If you are not sure this element won't return null, use an if statement instead of ! at the end.
+const userInputElement = document.getElementById("user-input");
+
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value = "Hi there!";
+}
