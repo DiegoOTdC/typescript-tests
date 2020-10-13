@@ -116,3 +116,36 @@ const numberStorage = new DataStorage<number>();
 // //...
 // objStorage.removeItem(diegoObject);
 // console.log(objStorage.getItems());
+
+//2 built-in generic types
+//Partial type
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+//we can do it all in one step
+// function createCourseGoal(title: string, description: string, date: Date): CourseGoal{
+//     return {title: title, description: description, completeUntil: date}
+// }
+
+//but what if we did it step by step
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  //object that in the end will be a CourseGoal, but initially Partial wraps our own type and makes all these properties optional.
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal; //the end will be a CourseGoal.
+}
+
+// Readonly type
+//we want to lock the array down, so you can't change it after setting it.
+const names: Readonly<string[]> = ["Diego", "Orlando"];
+// names.push("George");
+// names.pop();
