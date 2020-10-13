@@ -11,7 +11,9 @@ add = (n1: number, n2: number) => {
 
 interface FirstName {
   //can set name once, is readonly after that.
-  readonly name: string;
+  readonly name?: string;
+  //question mark after property, tells TS this property is optional.
+  outputName?: string;
 }
 
 //Create interface, always an object, set the types of properties and methods.
@@ -22,15 +24,24 @@ interface Greetable extends FirstName {
 
 //This class should implement the interface
 class Person implements Greetable {
-  name: string;
+  //optional name in class, doesn't have to be optional, but then make sure to assign a string to name in the constructor as well.
+  name?: string;
   age = 28;
 
-  constructor(n: string) {
-    this.name = n;
+  //optional params are defined by adding a ? to the param OR by assigning a default. n: string = "some default string"
+  constructor(n?: string) {
+    //n is optional, if not.. write: this.name = n; -> to make sure there always is a string assigned to name.
+    if (n) {
+      this.name = n;
+    }
   }
 
   greet(phrase: string) {
-    console.log(phrase + " " + this.name);
+    if (this.name) {
+      console.log(phrase + " " + this.name);
+    } else {
+      console.log("Hi!");
+    }
   }
 }
 
@@ -47,7 +58,7 @@ let user1: Greetable;
 // };
 
 // create new Person, feed in the name
-user1 = new Person("Diego");
+user1 = new Person();
 
 //call on the method.
 user1.greet("Hello! My name is");
