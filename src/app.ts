@@ -1,8 +1,22 @@
-//Create interface, always an object, set the types of properties and methods.
-interface Greetable {
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
+interface FirstName {
   //can set name once, is readonly after that.
   readonly name: string;
+}
 
+//Create interface, always an object, set the types of properties and methods.
+// interfaces can be extended
+interface Greetable extends FirstName {
   greet(phrase: string): void;
 }
 
