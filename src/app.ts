@@ -47,7 +47,16 @@ const fetchedUserData = {
   job: { title: "CEO", description: "My own company" },
 };
 
+//adding the question marks, is like writing if statements. If this fetchedUserData exist, continue, otherwise stop and just don't throw a run-time error.
 console.log(fetchedUserData?.job?.title);
+
+const userInput = "";
+//With or operator, whenever the value is a nullish or falsey value, it will show the default.
+const storedData = userInput || "DEFAULT";
+console.log(storedData);
+//Using the Nullish Coalescing operator, makes sure that only when the value is really null or undefined, will it show the default.
+const storedData2 = userInput ?? "DEFAULT";
+console.log(storedData2);
 
 // type UnknownEmployee = Employee | Admin;
 
