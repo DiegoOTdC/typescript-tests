@@ -1,20 +1,20 @@
-class Department {
+//abstract class can't be instantiated themselves, can only be inherited from.
+abstract class Department {
   //static property
   static fiscalYear = 2020;
 
   //protected is like private, but also available in classes that extend this class. (inherited)
   protected employees: string[] = [];
 
-  constructor(private readonly id: string, public name: string) {}
+  constructor(protected readonly id: string, public name: string) {}
 
   //create static method
   static createEmployee(name: string) {
     return { name: name };
   }
 
-  describe(this: Department) {
-    console.log(`Department (${this.id}): ${this.name}`);
-  }
+  //abstract methods/properties need to be inside an abstract class
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -33,6 +33,11 @@ class ITDepartment extends Department {
     //add suoer in inherting class (before anything else, like "this"), execute as function. Super class constructor of base class (department's constructor)
     super(id, "IT");
     //this.admins = admins
+  }
+
+  //since ITDepartment inherits from Department class and describe method is abstract, ITDepartment needs to implement the describe method here.
+  describe() {
+    console.log("IT Department - ID: " + this.id);
   }
 }
 
@@ -59,6 +64,10 @@ class AccountingDepartment extends Department {
   constructor(id: string, public reports: string[]) {
     super(id, "Accounting");
     this.lastReport = reports[0];
+  }
+
+  describe() {
+    console.log("Accounting Department - ID: " + this.id);
   }
 
   //overriding methods of base class, add own implementation.
@@ -105,5 +114,6 @@ console.log(accounting.mostRecentReport);
 accounting.addEmployee("Diego");
 accounting.addEmployee("Orlando");
 
-accounting.printReports();
-accounting.printEmployeeInformation();
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+accounting.describe();
