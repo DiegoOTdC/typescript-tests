@@ -75,3 +75,44 @@ function extractAndConvert<T extends object, U extends keyof T>(
 }
 
 extractAndConvert({ name: "Diego" }, "name");
+
+//Generic Class
+//we extend T with primitive types, because of how our class works.
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    //if it doesn't find the item in the storage, return, so do nothing.
+    if (this.data.indexOf(item) === -1) {
+      return;
+    }
+    this.data.splice(this.data.indexOf(item), 1); // returns -1 if it doesn't find anything, so removes the last one.
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+//different storages, more specific type definitions.
+//string
+const textStorage = new DataStorage<string>();
+textStorage.addItem("Diego");
+textStorage.addItem("Orlando");
+textStorage.removeItem("Diego");
+console.log(textStorage.getItems());
+
+//number(, or union or whatever we want)
+const numberStorage = new DataStorage<number>();
+
+// const objStorage = new DataStorage<object>();
+// const diegoObject = { name: "Diego" };
+// objStorage.addItem(diegoObject);
+// objStorage.addItem({ name: "Orlando" });
+// //...
+// objStorage.removeItem(diegoObject);
+// console.log(objStorage.getItems());
