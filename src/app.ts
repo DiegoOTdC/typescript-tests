@@ -34,10 +34,34 @@ function merge<T, U>(objA: T, objB: U) {
 const mergedObj = merge({ name: "Diego", hobbies: ["Sports"] }, 28);
 console.log(mergedObj);
 
-//Add constraints like this:
+//Add constraints, so TS knows the data needs to be of type object.
 function merge2<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
 const mergedObj2 = merge2({ name: "Diego", hobbies: ["Sports"] }, { age: 28 });
 console.log(mergedObj2);
+
+//Another generic function -> Be specific but flexible at the same time.
+//Add an interface, to make sure the element has a length property
+interface Lengthy {
+  length: number;
+}
+
+// as return we want a tuple
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got no value.";
+  if (element.length === 1) {
+    descriptionText = "Got 1 element.";
+  } else if (element.length > 1) {
+    descriptionText = `Got ${element.length} elements.`;
+  }
+  return [element, descriptionText];
+}
+
+//Example of types that work, because they have a length property
+console.log(countAndDescribe("Hello there!")); // string
+console.log(countAndDescribe(["Sports", "Cooking"])); //array
+
+//Example that won't work
+// console.log(countAndDescribe(20)); //number...
