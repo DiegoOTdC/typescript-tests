@@ -135,3 +135,16 @@ const userInputElement = document.getElementById("user-input");
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = "Hi there!";
 }
+
+//index properties: write flexible code. we don't need to know the amount of properties, or what we will name them, just the types.
+interface ErrorContainer {
+  //You can add a pre-defined property of the same type as the prop below:
+  // id: string;
+  [prop: string]: string;
+}
+
+//now we can add an object containing all the error messages for example.
+const errorBag: ErrorContainer = {
+  email: "Not a valid email!",
+  userName: "Must start with a capital character!",
+};
